@@ -1,0 +1,241 @@
+
+body {
+  background-color: #05081c;
+  overflow-x: hidden;
+}
+
+
+.jovi-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 35% at 15% 10%, rgba(56, 189, 248, 0.16), transparent 70%),
+    radial-gradient(45% 40% at 85% 75%, rgba(139, 92, 246, 0.18), transparent 70%);
+}
+
+/* ---------- Navegação inferior ---------- */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+  font-size: 11px;
+  color: #94a3c4;
+  transition: color 0.2s ease;
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-item:hover {
+  color: #cbd5f5;
+}
+
+.nav-item.is-active {
+  color: #38bdf8;
+}
+
+.nav-item.is-active svg {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: -4px;
+  border-radius: 12px;
+}
+
+/* ---------- Seletor foto / vídeo ---------- */
+.modo-btn {
+  padding: 6px 20px;
+  border-radius: 9999px;
+  font-size: 13px;
+  color: #94a3c4;
+  transition: all 0.2s ease;
+}
+
+.modo-btn.is-active {
+  background-color: #38bdf8;
+  color: #05081c;
+  font-weight: 600;
+}
+
+.modo-btn:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* ---------- Visor da câmera ---------- */
+.visor-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 33.33% 33.33%;
+}
+
+/* Linha de leitura que percorre o visor */
+.visor-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.18), transparent);
+  animation: jovi-scan 4s linear infinite;
+}
+
+@keyframes jovi-scan {
+  0%   { top: -90px; }
+  100% { top: 100%; }
+}
+
+/* Cantos do enquadramento */
+.visor-canto {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #38bdf8;
+  opacity: 0.8;
+}
+
+.canto-tl { top: 16px;    left: 16px;   border-right: 0; border-bottom: 0; border-top-left-radius: 8px; }
+.canto-tr { top: 16px;    right: 16px;  border-left: 0;  border-bottom: 0; border-top-right-radius: 8px; }
+.canto-bl { bottom: 16px; left: 16px;   border-right: 0; border-top: 0;    border-bottom-left-radius: 8px; }
+.canto-br { bottom: 16px; right: 16px;  border-left: 0;  border-top: 0;    border-bottom-right-radius: 8px; }
+
+/* Modo vídeo: cantos e detalhes em roxo */
+.modo-video .visor-canto { border-color: #8b5cf6; }
+.modo-video .visor-scan {
+  background: linear-gradient(to bottom, transparent, rgba(139, 92, 246, 0.2), transparent);
+}
+
+/* Flash do disparo */
+#flash.disparo {
+  animation: jovi-flash 0.35s ease-out;
+}
+
+@keyframes jovi-flash {
+  0%   { opacity: 0.75; }
+  100% { opacity: 0; }
+}
+
+/* ---------- Botão de captura ---------- */
+.btn-captura {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid rgba(56, 189, 248, 0.55);
+  background-color: rgba(10, 16, 48, 0.6);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-captura-interno {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.btn-captura:active {
+  transform: scale(0.94);
+}
+
+.btn-captura:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 6px;
+}
+
+/* Estado vídeo: quadrado vermelho, como em apps de câmera */
+.modo-video .btn-captura {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 22px rgba(139, 92, 246, 0.35);
+}
+
+.modo-video .btn-captura-interno {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: #f87171;
+}
+
+/* ---------- Botões laterais dos controles ---------- */
+.controle-lateral {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  border: 1px solid #1e2a5a;
+  background-color: #121a3d;
+  color: #94a3c4;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.controle-lateral:hover {
+  color: #cbd5f5;
+  border-color: #38bdf8;
+}
+
+.controle-lateral.is-on {
+  border-color: rgba(56, 189, 248, 0.6);
+  color: #e2e8f0;
+}
+
+.controle-lateral:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+/* ---------- Cards de informação ---------- */
+.card-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.75);
+}
+
+.card-icone {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background-color: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+}
+
+.card-icone svg {
+  width: 20px;
+  height: 20px;
+}
+
+.card-stat {
+  padding: 12px;
+  text-align: center;
+  border-radius: 14px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(10, 16, 48, 0.75);
+}
+
+/* ---------- Acessibilidade ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .visor-scan,
+  #flash.disparo,
+  .animate-pulse {
+    animation: none !important;
+  }
+}

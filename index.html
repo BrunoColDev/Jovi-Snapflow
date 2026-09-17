@@ -1,23 +1,271 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="JOVI Snapflow - plataforma web mobile-first para captura, organização e compartilhamento de fotos e vídeos." />
+  <meta name="theme-color" content="#05081c" />
+  <title>JOVI Snapflow — Captura</title>
 
-  <title>JOVI Snapflow</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link rel="stylesheet" href="style.css">
+  <script>
+
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            jovi: {
+              bg:     '#05081c', 
+              panel:  '#0a1030', 
+              card:   '#121a3d', 
+              line:   '#1e2a5a', 
+              blue:   '#38bdf8', 
+              purple: '#8b5cf6', 
+              muted:  '#94a3c4'  
+            }
+          },
+
+          fontFamily: {
+            display: [
+              'ui-monospace', 'SFMono-Regular', '"SF Mono"', 'Menlo',
+              'Consolas', '"Liberation Mono"', 'monospace'
+            ],
+            sans: [
+              'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"',
+              'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'
+            ]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="bg-jovi-bg text-slate-100 font-sans min-h-screen antialiased">
 
-    <h1 class="text-3xl font-bold">JOVI SNAPFLOW</h1>
-    <p>Capture, organize e compartilhe suas mídias.</p>
+  <div class="jovi-glow" aria-hidden="true"></div>
 
-    <script src="script.js"></script>
+  <div class="relative z-10 lg:flex lg:min-h-screen">
+
+    <!-- ===================== NAVEGAÇÃO ===================== -->
+    <nav aria-label="Navegação principal"
+         class="fixed bottom-0 left-0 right-0 z-30 border-t border-jovi-line bg-jovi-panel/95 backdrop-blur
+                pb-[env(safe-area-inset-bottom)]
+                lg:static lg:order-first lg:w-24 lg:shrink-0 lg:border-t-0 lg:border-r lg:pb-0">
+      <ul class="flex items-center justify-around lg:h-full lg:flex-col lg:justify-start lg:gap-2 lg:pt-8">
+        <li class="flex-1 lg:w-full lg:flex-none">
+          <a href="#" class="nav-item is-active" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" stroke-linejoin="round"/>
+            </svg>
+            <span>Início</span>
+          </a>
+        </li>
+        <li class="flex-1 lg:w-full lg:flex-none">
+          <a href="#" class="nav-item" data-em-breve="Galeria">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <circle cx="8.5" cy="9.5" r="1.5"/>
+              <path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5" stroke-linejoin="round"/>
+            </svg>
+            <span>Galeria</span>
+          </a>
+        </li>
+        <li class="flex-1 lg:w-full lg:flex-none">
+          <a href="#" class="nav-item" data-em-breve="Perfil">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.5"/>
+              <path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke-linecap="round"/>
+            </svg>
+            <span>Perfil</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ===================== CONTEÚDO ===================== -->
+    <div class="flex-1">
+
+      <!-- Cabeçalho -->
+      <header class="sticky top-0 z-20 border-b border-jovi-line/70 bg-jovi-bg/80 px-4 py-3 backdrop-blur
+                     sm:px-6 lg:px-10">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4">
+          <div>
+            <h1 class="font-display text-lg tracking-widest sm:text-xl">
+              JOVI <span class="text-jovi-blue">SNAPFLOW</span>
+            </h1>
+            <p class="mt-0.5 text-[11px] text-jovi-muted sm:text-xs">
+              Captura inteligente por IA
+            </p>
+          </div>
+
+          <button id="btn-notificacoes" type="button"
+                  class="relative grid h-11 w-11 place-items-center rounded-full border border-jovi-line
+                         bg-jovi-card text-jovi-muted transition hover:text-jovi-blue
+                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-jovi-blue"
+                  aria-label="Abrir notificações">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M18 8a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7" stroke-linejoin="round"/>
+              <path d="M10.5 19a2 2 0 0 0 3 0" stroke-linecap="round"/>
+            </svg>
+            <span class="absolute right-3 top-3 h-2 w-2 rounded-full bg-jovi-purple ring-2 ring-jovi-card"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Conteúdo principal -->
+      <main class="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start
+                   lg:gap-8 lg:px-10 lg:pb-10">
+
+        <!-- Câmera -->
+        <section aria-labelledby="titulo-camera" class="min-w-0">
+          <h2 id="titulo-camera" class="sr-only">Câmera</h2>
+
+          <!-- Seletor foto / vídeo -->
+          <div class="mx-auto mb-4 flex w-fit gap-1 rounded-full border border-jovi-line bg-jovi-card p-1"
+               role="group" aria-label="Modo de captura">
+            <button type="button" class="modo-btn is-active" data-modo="foto" aria-pressed="true">Foto</button>
+            <button type="button" class="modo-btn" data-modo="video" aria-pressed="false">Vídeo</button>
+          </div>
+
+          <!-- Visor -->
+          <div id="visor"
+               class="relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-3xl border border-jovi-line
+                      bg-jovi-panel sm:aspect-[4/5] lg:max-w-none lg:aspect-[4/3]">
+            <div class="visor-grid" aria-hidden="true"></div>
+            <div class="visor-scan" aria-hidden="true"></div>
+
+            <!-- Cantos do enquadramento -->
+            <span class="visor-canto canto-tl" aria-hidden="true"></span>
+            <span class="visor-canto canto-tr" aria-hidden="true"></span>
+            <span class="visor-canto canto-bl" aria-hidden="true"></span>
+            <span class="visor-canto canto-br" aria-hidden="true"></span>
+
+            <!-- Selo de câmera ativa -->
+            <div class="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-jovi-line
+                        bg-jovi-bg/70 px-3 py-1.5 text-[11px] text-jovi-muted backdrop-blur">
+              <span class="h-2 w-2 animate-pulse rounded-full bg-jovi-blue"></span>
+              <span id="status-camera">Câmera pronta</span>
+            </div>
+
+            <!-- Ícone de câmera -->
+            <div class="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full border border-jovi-line
+                        bg-jovi-bg/70 text-jovi-blue backdrop-blur">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke-linejoin="round"/>
+                <circle cx="12" cy="13.5" r="3.5"/>
+              </svg>
+            </div>
+
+            <!-- Zoom -->
+            <p class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full border border-jovi-line bg-jovi-bg/70
+                      px-4 py-1 font-display text-xs tracking-[0.3em] text-jovi-blue backdrop-blur">1x</p>
+
+            <!-- Flash do disparo -->
+            <div id="flash" class="pointer-events-none absolute inset-0 bg-white opacity-0" aria-hidden="true"></div>
+          </div>
+
+          <!-- Controles -->
+          <div class="mx-auto mt-6 flex w-full max-w-md items-center justify-between gap-4 lg:max-w-none">
+            <button type="button" class="controle-lateral" data-em-breve="Galeria" aria-label="Abrir galeria">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                <circle cx="8.5" cy="9.5" r="1.5"/>
+                <path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <button id="btn-capturar" type="button" class="btn-captura" aria-label="Capturar foto">
+              <span class="btn-captura-interno"></span>
+            </button>
+
+            <button id="btn-ia" type="button" class="controle-lateral is-on" aria-pressed="true"
+                    aria-label="Assistente de IA">
+              <span class="font-display text-[11px] tracking-widest">IA</span>
+              <span id="ia-estado" class="text-[10px] text-jovi-blue">ON</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Informações da proposta -->
+        <section aria-labelledby="titulo-recursos" class="mt-8 lg:mt-0">
+          <h2 id="titulo-recursos" class="sr-only">Recursos do JOVI</h2>
+
+          <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            <li class="card-info">
+              <span class="card-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke-linejoin="round"/>
+                  <circle cx="12" cy="13.5" r="3.5"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-sm font-semibold">Captura otimizada</h3>
+                <p class="mt-1 text-xs leading-relaxed text-jovi-muted">
+                  A imagem é tratada na hora do clique, sem espera entre uma foto e outra.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info">
+              <span class="card-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path d="M13 2 4 14h6l-1 8 9-12h-6z" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-sm font-semibold">Carregamento instantâneo</h3>
+                <p class="mt-1 text-xs leading-relaxed text-jovi-muted">
+                  Suas mídias aparecem na galeria em menos de um segundo.
+                </p>
+              </div>
+            </li>
+
+            <li class="card-info sm:col-span-2 lg:col-span-1">
+              <span class="card-icone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 7v5l3 2" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <div>
+                <h3 class="text-sm font-semibold">Organização automática</h3>
+                <p class="mt-1 text-xs leading-relaxed text-jovi-muted">
+                  Cada captura já entra em uma categoria: paisagens, pessoas, viagens ou favoritos.
+                </p>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Pequenos feedbacks visuais -->
+          <dl class="mt-3 grid grid-cols-3 gap-3">
+            <div class="card-stat">
+              <dt class="text-[10px] text-jovi-muted">Carregamento</dt>
+              <dd class="mt-1 font-display text-base text-jovi-blue">0,8s</dd>
+            </div>
+            <div class="card-stat">
+              <dt class="text-[10px] text-jovi-muted">Nesta sessão</dt>
+              <dd id="contador-capturas" class="mt-1 font-display text-base text-jovi-blue">0</dd>
+            </div>
+            <div class="card-stat">
+              <dt class="text-[10px] text-jovi-muted">Espaço livre</dt>
+              <dd class="mt-1 font-display text-base text-jovi-purple">32 GB</dd>
+            </div>
+          </dl>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Aviso rápido (feedback visual) -->
+  <p id="aviso" role="status" aria-live="polite"
+     class="pointer-events-none fixed bottom-24 left-1/2 z-40 -translate-x-1/2 rounded-full border border-jovi-line
+            bg-jovi-card px-5 py-2 text-xs text-slate-100 opacity-0 shadow-lg transition-opacity duration-300
+            lg:bottom-8"></p>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
