@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Perfil do JOVI Snapflow - suas informações e preferências da aplicação." />
+  <meta name="theme-color" content="#05081c" />
+  <title>JOVI Snapflow — Perfil</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            jovi: {
+              bg:     '#05081c',
+              panel:  '#0a1030',
+              card:   '#121a3d',
+              line:   '#1e2a5a',
+              blue:   '#38bdf8',
+              purple: '#8b5cf6',
+              muted:  '#94a3c4'
+            }
+          },
+          fontFamily: {
+            display: [
+              'ui-monospace', 'SFMono-Regular', '"SF Mono"', 'Menlo',
+              'Consolas', '"Liberation Mono"', 'monospace'
+            ],
+            sans: [
+              'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"',
+              'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'
+            ]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="bg-jovi-bg text-slate-100 font-sans min-h-screen antialiased">
+
+  <div class="jovi-glow" aria-hidden="true"></div>
+
+  <div class="relative z-10 lg:flex lg:min-h-screen">
+
+    <!-- ===================== NAVEGAÇÃO ===================== -->
+    <nav aria-label="Navegação principal"
+         class="fixed bottom-0 left-0 right-0 z-30 border-t border-jovi-line bg-jovi-panel/95 backdrop-blur
+                pb-[env(safe-area-inset-bottom)]
+                lg:static lg:order-first lg:w-24 lg:shrink-0 lg:border-t-0 lg:border-r lg:pb-0">
+      <ul class="flex items-center justify-around lg:h-full lg:flex-col lg:justify-start lg:gap-2 lg:pt-8">
+        <li class="flex-1 lg:w-full lg:flex-none">
+          <a href="../index.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" stroke-linejoin="round"/>
+            </svg>
+            <span>Início</span>
+          </a>
+        </li>
+        <li class="flex-1 lg:w-full lg:flex-none">
+          <a href="galeria.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <circle cx="8.5" cy="9.5" r="1.5"/>
+              <path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5" stroke-linejoin="round"/>
+            </svg>
+            <span>Galeria</span>
+          </a>
+        </li>
+        <li class="flex-1 lg:w-full lg:flex-none">
+          <a href="performance.html" class="nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4.5 16a7.5 7.5 0 1 1 15 0" stroke-linecap="round"/>
+              <path d="M12 16 15.2 10.3" stroke-linecap="round"/>
+              <circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+            <span>Performance</span>
+          </a>
+        </li>
+        <li class="flex-1 lg:w-full lg:flex-none">
+          <a href="perfil.html" class="nav-item is-active" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.5"/>
+              <path d="M4.5 20a7.5 7.5 0 0 1 15 0" stroke-linecap="round"/>
+            </svg>
+            <span>Perfil</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ===================== CONTEÚDO ===================== -->
+    <div class="flex-1">
+
+      <header class="sticky top-0 z-20 border-b border-jovi-line/70 bg-jovi-bg/80 px-4 py-3 backdrop-blur
+                     sm:px-6 lg:px-10">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4">
+          <div>
+            <h1 class="font-display text-lg tracking-widest sm:text-xl">
+              JOVI <span class="text-jovi-blue">SNAPFLOW</span>
+            </h1>
+            <p class="mt-0.5 text-[11px] text-jovi-muted sm:text-xs">Captura inteligente por IA</p>
+          </div>
+
+          <button id="btn-notificacoes" type="button"
+                  class="relative grid h-11 w-11 place-items-center rounded-full border border-jovi-line
+                         bg-jovi-card text-jovi-muted transition hover:text-jovi-blue
+                         focus-visible:outline focus-visible:outline-2 focus-visible:outline-jovi-blue"
+                  aria-label="Abrir notificações">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M18 8a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7" stroke-linejoin="round"/>
+              <path d="M10.5 19a2 2 0 0 0 3 0" stroke-linecap="round"/>
+            </svg>
+            <span class="absolute right-3 top-3 h-2 w-2 rounded-full bg-jovi-purple ring-2 ring-jovi-card"></span>
+          </button>
+        </div>
+      </header>
+
+      <main class="mx-auto max-w-6xl px-4 pb-28 pt-5 sm:px-6 lg:px-10 lg:pb-10">
+
+        <section aria-labelledby="titulo-perfil">
+          <div class="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <h2 id="titulo-perfil" class="font-display text-2xl tracking-wider sm:text-3xl">Perfil</h2>
+              <p class="mt-1 max-w-md text-xs leading-relaxed text-jovi-muted sm:text-sm">
+                Suas informações e as preferências do JOVI, num só lugar.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:items-start">
+
+            <!-- Coluna esquerda: usuário e estatísticas -->
+            <div class="space-y-4">
+              <div class="card-usuario">
+                <span class="avatar-usuario font-display" aria-hidden="true">AS</span>
+                <div class="min-w-0">
+                  <p class="text-sm font-semibold">Alex Silva</p>
+                  <p class="truncate text-xs text-jovi-muted">alex@jovisnapflow.com</p>
+                  <p class="mt-1 text-[11px] text-jovi-muted">ID: JV-2026-0417</p>
+                </div>
+              </div>
+
+              <dl class="grid grid-cols-3 gap-3">
+                <div class="card-stat">
+                  <dt class="text-[10px] text-jovi-muted">Mídias</dt>
+                  <dd class="mt-1 font-display text-base text-jovi-blue">214</dd>
+                </div>
+                <div class="card-stat">
+                  <dt class="text-[10px] text-jovi-muted">Favoritos</dt>
+                  <dd class="mt-1 font-display text-base text-jovi-blue">37</dd>
+                </div>
+                <div class="card-stat">
+                  <dt class="text-[10px] text-jovi-muted">Espaço</dt>
+                  <dd class="mt-1 font-display text-base text-jovi-purple">18,7 GB</dd>
+                </div>
+              </dl>
+            </div>
+
+            <!-- Coluna direita: preferências -->
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-jovi-muted">Preferências</h3>
+
+                <ul class="mt-3 space-y-3">
+                  <li class="linha-preferencia">
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium">Organização automática por IA</p>
+                      <p class="mt-0.5 text-xs text-jovi-muted">Categoriza cada mídia assim que ela é capturada.</p>
+                    </div>
+                    <button type="button" class="toggle-switch is-ativo" data-preferencia="ia"
+                            role="switch" aria-checked="true" aria-label="Organização automática por IA">
+                      <span class="toggle-bolinha"></span>
+                    </button>
+                  </li>
+
+                  <li class="linha-preferencia">
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium">Notificações</p>
+                      <p class="mt-0.5 text-xs text-jovi-muted">Avisos sobre novas capturas e compartilhamentos.</p>
+                    </div>
+                    <button type="button" class="toggle-switch is-ativo" data-preferencia="notificacoes"
+                            role="switch" aria-checked="true" aria-label="Notificações">
+                      <span class="toggle-bolinha"></span>
+                    </button>
+                  </li>
+
+                  <li class="linha-preferencia">
+                    <div class="min-w-0">
+                      <p class="text-sm font-medium">Otimização automática</p>
+                      <p class="mt-0.5 text-xs text-jovi-muted">Reduz o tamanho dos arquivos sem perder qualidade visível.</p>
+                    </div>
+                    <button type="button" class="toggle-switch" data-preferencia="otimizacao"
+                            role="switch" aria-checked="false" aria-label="Otimização automática">
+                      <span class="toggle-bolinha"></span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-jovi-muted">Qualidade de captura</h3>
+                <div class="mt-3 flex flex-wrap gap-2" role="group" aria-label="Selecionar qualidade de captura">
+                  <button type="button" class="chip-filtro is-active" data-qualidade="Alta" aria-pressed="true">Alta</button>
+                  <button type="button" class="chip-filtro" data-qualidade="Média" aria-pressed="false">Média</button>
+                  <button type="button" class="chip-filtro" data-qualidade="Econômica" aria-pressed="false">Econômica</button>
+                </div>
+              </div>
+
+              <button id="btn-salvar-preferencias" type="button" class="btn-salvar-preferencias">
+                Salvar preferências
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <p id="aviso" role="status" aria-live="polite"
+     class="pointer-events-none fixed bottom-24 left-1/2 z-40 -translate-x-1/2 rounded-full border border-jovi-line
+            bg-jovi-card px-5 py-2 text-xs text-slate-100 opacity-0 shadow-lg transition-opacity duration-300
+            lg:bottom-8"></p>
+
+  <script src="../js/perfil.js"></script>
+</body>
+</html>
