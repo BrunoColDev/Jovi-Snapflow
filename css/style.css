@@ -878,3 +878,66 @@ body {
 .link-voltar-galeria svg { width: 14px; height: 14px; }
 .link-voltar-galeria:hover { color: #38bdf8; }
 .link-voltar-galeria:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; border-radius: 6px; }
+
+/* ---------- Performance ---------- */
+.card-resumo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.75);
+}
+
+.card-resumo dt { font-size: 11px; color: #94a3c4; }
+.card-resumo dd { margin-top: 2px; }
+
+.barra-progresso-trilha {
+  height: 8px;
+  border-radius: 9999px;
+  background-color: rgba(30, 42, 90, 0.6);
+  overflow: hidden;
+}
+
+.barra-progresso-preenchimento {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+  transition: width 0.4s ease;
+}
+
+.atividade-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.6);
+}
+
+.atividade-icone {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+}
+
+.atividade-icone svg { width: 16px; height: 16px; }
+
+.atividade-texto {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+}
+
+.atividade-tempo {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: #94a3c4;
+}
