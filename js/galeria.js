@@ -95,4 +95,18 @@ cards.forEach((card) => {
   }
 });
 
+cards.forEach((card) => {
+  const botaoCompartilhar = card.querySelector(".btn-compartilhar");
+
+  botaoCompartilhar.addEventListener("click", () => {
+    const parametros = new URLSearchParams({
+      midia: card.dataset.nome,
+      tipo: card.dataset.tipo,
+      categoria: card.dataset.categoria
+    });
+
+    window.location.href = `compartilhamento.html?${parametros.toString()}`;
+  });
+});
+
 atualizarGaleria();

@@ -366,3 +366,515 @@ body {
 }
 
 .midia-info p { margin-top: 2px; font-size: 11px; color: #94a3c4; }
+
+body {
+  background-color: #05081c;
+  overflow-x: hidden;
+}
+
+
+.jovi-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 35% at 15% 10%, rgba(56, 189, 248, 0.16), transparent 70%),
+    radial-gradient(45% 40% at 85% 75%, rgba(139, 92, 246, 0.18), transparent 70%);
+}
+
+/* ---------- Navegação inferior ---------- */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+  font-size: 11px;
+  color: #94a3c4;
+  transition: color 0.2s ease;
+}
+
+.nav-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-item:hover {
+  color: #cbd5f5;
+}
+
+.nav-item.is-active {
+  color: #38bdf8;
+}
+
+.nav-item.is-active svg {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: -4px;
+  border-radius: 12px;
+}
+
+/* ---------- Seletor foto / vídeo ---------- */
+.modo-btn {
+  padding: 6px 20px;
+  border-radius: 9999px;
+  font-size: 13px;
+  color: #94a3c4;
+  transition: all 0.2s ease;
+}
+
+.modo-btn.is-active {
+  background-color: #38bdf8;
+  color: #05081c;
+  font-weight: 600;
+}
+
+.modo-btn:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* ---------- Visor da câmera ---------- */
+.visor-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 33.33% 33.33%;
+}
+
+/* Linha de leitura que percorre o visor */
+.visor-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, rgba(56, 189, 248, 0.18), transparent);
+  animation: jovi-scan 4s linear infinite;
+}
+
+@keyframes jovi-scan {
+  0%   { top: -90px; }
+  100% { top: 100%; }
+}
+
+/* Cantos do enquadramento */
+.visor-canto {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 2px solid #38bdf8;
+  opacity: 0.8;
+}
+
+.canto-tl { top: 16px;    left: 16px;   border-right: 0; border-bottom: 0; border-top-left-radius: 8px; }
+.canto-tr { top: 16px;    right: 16px;  border-left: 0;  border-bottom: 0; border-top-right-radius: 8px; }
+.canto-bl { bottom: 16px; left: 16px;   border-right: 0; border-top: 0;    border-bottom-left-radius: 8px; }
+.canto-br { bottom: 16px; right: 16px;  border-left: 0;  border-top: 0;    border-bottom-right-radius: 8px; }
+
+/* Modo vídeo: cantos e detalhes em roxo */
+.modo-video .visor-canto { border-color: #8b5cf6; }
+.modo-video .visor-scan {
+  background: linear-gradient(to bottom, transparent, rgba(139, 92, 246, 0.2), transparent);
+}
+
+/* Flash do disparo */
+#flash.disparo {
+  animation: jovi-flash 0.35s ease-out;
+}
+
+@keyframes jovi-flash {
+  0%   { opacity: 0.75; }
+  100% { opacity: 0; }
+}
+
+/* ---------- Botão de captura ---------- */
+.btn-captura {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid rgba(56, 189, 248, 0.55);
+  background-color: rgba(10, 16, 48, 0.6);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-captura-interno {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.btn-captura:active {
+  transform: scale(0.94);
+}
+
+.btn-captura:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 6px;
+}
+
+/* Estado vídeo: quadrado vermelho, como em apps de câmera */
+.modo-video .btn-captura {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 22px rgba(139, 92, 246, 0.35);
+}
+
+.modo-video .btn-captura-interno {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: #f87171;
+}
+
+/* ---------- Botões laterais dos controles ---------- */
+.controle-lateral {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  border: 1px solid #1e2a5a;
+  background-color: #121a3d;
+  color: #94a3c4;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.controle-lateral:hover {
+  color: #cbd5f5;
+  border-color: #38bdf8;
+}
+
+.controle-lateral.is-on {
+  border-color: rgba(56, 189, 248, 0.6);
+  color: #e2e8f0;
+}
+
+.controle-lateral:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+/* ---------- Cards de informação ---------- */
+.card-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.75);
+}
+
+.card-icone {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background-color: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+}
+
+.card-icone svg {
+  width: 20px;
+  height: 20px;
+}
+
+.card-stat {
+  padding: 12px;
+  text-align: center;
+  border-radius: 14px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(10, 16, 48, 0.75);
+}
+
+/* ---------- Acessibilidade ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .visor-scan,
+  #flash.disparo,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
+
+/* ---------- Galeria ---------- */
+.campo-busca {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  border-radius: 14px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.75);
+  color: #e2e8f0;
+  font-size: 14px;
+}
+
+.campo-busca::placeholder { color: #94a3c4; }
+
+.campo-busca:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.25);
+}
+
+.faixa-filtros { scrollbar-width: none; }
+.faixa-filtros::-webkit-scrollbar { display: none; }
+
+.chip-filtro {
+  flex-shrink: 0;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.75);
+  color: #94a3c4;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.chip-filtro:hover { color: #cbd5f5; border-color: #38bdf8; }
+
+.chip-filtro.is-active {
+  background-color: #38bdf8;
+  border-color: #38bdf8;
+  color: #05081c;
+  font-weight: 600;
+}
+
+.chip-filtro:focus-visible { outline: 2px solid #8b5cf6; outline-offset: 2px; }
+
+.midia-card {
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.75);
+}
+
+.midia-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  border-bottom: 1px solid #1e2a5a;
+}
+
+.preview-icone {
+  width: 42px;
+  height: 42px;
+  color: rgba(226, 232, 240, 0.75);
+}
+
+.badge-tipo {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(5, 8, 28, 0.75);
+  font-size: 10px;
+  color: #94a3c4;
+  backdrop-filter: blur(4px);
+}
+
+.badge-video { color: #8b5cf6; }
+.badge-tipo svg { width: 10px; height: 10px; }
+
+.btn-favorito {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(5, 8, 28, 0.7);
+  color: #94a3c4;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-favorito svg { width: 17px; height: 17px; fill: none; }
+.btn-favorito:hover { color: #e2e8f0; }
+.btn-favorito:active { transform: scale(0.9); }
+
+.btn-favorito.is-favorito {
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.6);
+}
+
+.btn-favorito.is-favorito svg {
+  fill: #38bdf8;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+}
+
+.btn-favorito:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+
+.midia-info { padding: 10px 12px 12px; }
+
+.midia-info h3 {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.midia-info p { margin-top: 2px; font-size: 11px; color: #94a3c4; }
+/* ---------- Compartilhamento na Galeria ---------- */
+.midia-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px 12px;
+}
+
+.midia-texto { min-width: 0; }
+
+.btn-compartilhar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-top: 1px;
+  border-radius: 50%;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.6);
+  color: #94a3c4;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-compartilhar svg { width: 15px; height: 15px; }
+.btn-compartilhar:hover { color: #38bdf8; border-color: #38bdf8; }
+.btn-compartilhar:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+
+/* ---------- Página de Compartilhamento ---------- */
+.btn-voltar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid #1e2a5a;
+  background-color: #121a3d;
+  color: #94a3c4;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-voltar svg { width: 18px; height: 18px; }
+.btn-voltar:hover { color: #38bdf8; border-color: #38bdf8; }
+.btn-voltar:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+
+.preview-compartilhamento {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  max-width: 280px;
+  border-radius: 20px;
+  border: 1px solid #1e2a5a;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(139, 92, 246, 0.3) 60%, #121a3d);
+}
+
+.preview-compartilhamento .preview-icone {
+  width: 52px;
+  height: 52px;
+  color: rgba(226, 232, 240, 0.8);
+}
+
+.preview-compartilhamento .badge-tipo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.opcao-compartilhar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px;
+  border-radius: 16px;
+  border: 1px solid #1e2a5a;
+  background-color: rgba(18, 26, 61, 0.75);
+  color: #94a3c4;
+  font-size: 12px;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.opcao-compartilhar:hover { border-color: #38bdf8; color: #e2e8f0; }
+.opcao-compartilhar:active { transform: scale(0.97); }
+.opcao-compartilhar:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+
+.opcao-icone {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.opcao-icone svg { width: 20px; height: 20px; }
+
+.opcao-compartilhar.is-selecionada {
+  border-color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.12);
+  color: #e2e8f0;
+}
+
+.opcao-compartilhar.is-selecionada .opcao-icone {
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.5);
+}
+
+.btn-compartilhar-agora {
+  width: 100%;
+  padding: 12px 20px;
+  border-radius: 9999px;
+  background-color: #38bdf8;
+  color: #05081c;
+  font-weight: 600;
+  font-size: 14px;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.btn-compartilhar-agora:hover:not(:disabled) { opacity: 0.9; }
+.btn-compartilhar-agora:active:not(:disabled) { transform: scale(0.98); }
+
+.btn-compartilhar-agora:disabled {
+  background-color: #1e2a5a;
+  color: #5c6a94;
+  cursor: not-allowed;
+}
+
+.btn-compartilhar-agora.is-carregando { opacity: 0.8; cursor: wait; }
+
+.status-sucesso { color: #38bdf8; }
+
+.link-voltar-galeria {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #94a3c4;
+  transition: color 0.2s ease;
+}
+
+.link-voltar-galeria svg { width: 14px; height: 14px; }
+.link-voltar-galeria:hover { color: #38bdf8; }
+.link-voltar-galeria:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; border-radius: 6px; }
